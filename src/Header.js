@@ -38,7 +38,7 @@ class Header extends Component {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-        </Navbar>;
+        </Navbar>
       </div>
     );
   }
