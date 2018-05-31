@@ -4,7 +4,7 @@ export const getReservations = () => {
   axios
     .get("/v1/reservationService/reservations")
     .then(res => {
-      return "hello";
+      return res;
     })
     .catch(err => {
       console.log(err);
