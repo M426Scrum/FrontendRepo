@@ -1,6 +1,6 @@
 import { axios } from "./axios";
 
-return () => {
+export const getReservations = () => {
   axios
     .get("/v1/reservationService/reservations")
     .then(res => {
