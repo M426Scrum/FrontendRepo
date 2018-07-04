@@ -1,0 +1,19 @@
+.error{
+    width: 90%;
+    padding: 10px;
+    background-color: lightcoral;
+    border-radius: 5px;
+    vertical-align: middle;
+    height: 40px;
+    color: red;
+}
+
+.success{
+    width: 90%;
+    padding: 10px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    vertical-align: middle;
+    height: 40px;
+    color: green;
+}

@@ -34,7 +34,7 @@ class Header extends Component {
                 </MenuItem>
               </NavDropdown>
               <NavDropdown eventKey={3} title="Räume" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>Raum suchen</MenuItem>
+                <MenuItem eventKey={3.2}><Link to="/rooms">Raum Liste</Link></MenuItem>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
