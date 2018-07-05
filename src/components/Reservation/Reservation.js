@@ -19,8 +19,8 @@ class Reservation extends React.Component {
           <td>{this.state.data.reservationId}</td>
           <td>{this.state.data.start}</td>
           <td>{this.state.data.end}</td>
-          <td>{this.state.data.events.title}</td>
-          <td>{this.state.data.rooms.name}</td>
+          <td>{this.state.data.event.title}</td>
+          <td>{this.state.data.room.name}</td>
         </tr>
       </tbody>
     );

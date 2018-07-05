@@ -15,7 +15,7 @@ class ReservationList extends React.Component {
 
   componentWillMount() {
     axios
-      .get("http://localhost:8080/reservation")
+      .get("http://localhost:8080/v1/ReservationServicesV1/reservations")
       .then(response => {
         this.setState({ data: response.data });
       })

@@ -25,12 +25,13 @@ class RoomDetails extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:8080/reservation/room/' + this.props.data.roomId).then(response => {
+    axios.get('http://localhost:8080/v1/ReservationServicesV1/reservation/room/' + this.props.data.roomId).then(response => {
       this.setState({reservations: response.data});
     }).catch(err => {
       console.log(err);
     });
-    axios.get('http://localhost:8080/event/').then(response => {
+
+    axios.get('http://localhost:8080/v1/EventServicesV1/events/').then(response => {
       this.setState({events: response.data});
     }).catch(err => {
       console.log(err);
@@ -43,7 +44,7 @@ class RoomDetails extends React.Component {
 
   reserveRoom(){
     if(!this.state.error){
-      axios.put('http://localhost:8080/reservation', 
+      axios.put('http://localhost:8080/v1/ReservationServicesV1/reservation',
         {
           startDate : this.state.startDate.toDate(), 
           endDate : this.state.endDate.toDate(),
@@ -113,7 +114,7 @@ class RoomDetails extends React.Component {
 
   render() {
     const eventOptions = this.state.events.map(event => <option key={event.eventId} value={event.eventId}>{event.title}</option>);
-    const reservationList = this.state.reservations.map(reservation => <p key={reservation.reservationId}>{reservation.start} - {reservation.end} {reservation.events.title} {reservation.events.organiser}</p>);
+    const reservationList = this.state.reservations.map(reservation => <p key={reservation.reservationId}>{reservation.start} - {reservation.end} {reservation.event.title} {reservation.event.organiser}</p>);
 
     return (
       <div>
