@@ -26,7 +26,7 @@ class RoomList extends React.Component{
 
       componentWillMount() {
         axios
-          .get("http://localhost:8080/room")
+          .get("http://localhost:8080/v1/RoomServicesV1/rooms")
           .then(response => {
             this.setState({ data: response.data });
           })

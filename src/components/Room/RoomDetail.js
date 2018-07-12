@@ -17,8 +17,8 @@ class RoomDetails extends React.Component {
     this.state = {
       reservations: [],
       events: [],
-      startDate: null,
-      endDate: null,
+      startDate: moment(),
+      endDate: moment(),
       message: null,
       error: false,
       eventId: null,
@@ -26,12 +26,13 @@ class RoomDetails extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('http://localhost:8080/reservation/room/' + this.props.data.roomId).then(response => {
+    axios.get('http://localhost:8080/v1/ReservationServicesV1/reservation/room/' + this.props.data.roomId).then(response => {
       this.setState({reservations: response.data});
     }).catch(err => {
       console.log(err);
     });
-    axios.get('http://localhost:8080/event/').then(response => {
+
+    axios.get('http://localhost:8080/v1/EventServicesV1/events/').then(response => {
       this.setState({events: response.data});
     }).catch(err => {
       console.log(err);
@@ -43,11 +44,13 @@ class RoomDetails extends React.Component {
   }
 
   reserveRoom(){
+      console.log(this.state.startDate.toISOString());
+
     if(!this.state.error){
-      axios.put('http://localhost:8080/reservation', 
+      axios.put('http://localhost:8080/v1/ReservationServicesV1/reservation',
         {
-          startDate : this.state.startDate.toDate(), 
-          endDate : this.state.endDate.toDate(),
+          start : this.state.startDate.format("YYYY.MM.DD hh:mm:ss"),
+          end : this.state.endDate.format("YYYY.MM.DD hh:mm:ss"),
           roomId: this.props.data.roomId,
           //TODO
           eventId: this.state.eventId,
@@ -74,11 +77,19 @@ class RoomDetails extends React.Component {
   checkValue(){
     let error = false;
     console.log(this.state.eventId);
+
+    console.log(this.state.startDate < this.state.endDate);
+
     if(this.state.startDate && this.state.endDate && this.state.eventId !== 'Please Select...'){
-      if(this.state.startDate < this.state.endDate && this.state.startDate.isAfter()){
-        this.state.reservations.map(reservation => {
+      if(this.state.startDate < this.state.endDate){
+        /*this.state.reservations.map(reservation => {
             var partStart = reservation.start.split('.');
             var partsEnd = reservation.end.split('.');
+
+            console.log("F1: "+this.state.endDate < reservation.start);
+            console.log("F2: " +this.state.startDate > reservation.end);
+
+
             console.log(this.state.startDate.isAfter(partsEnd[2]+'-'+partsEnd[1]+'-'+partsEnd[0]) +' '+ this.state.endDate.isBefore(partStart[2]+'-'+partStart[1]+'-'+partStart[0]));
             if(this.state.startDate.isAfter(partsEnd[2]+'-'+partsEnd[1]+'-'+partsEnd[0]) || this.state.endDate.isBefore(partStart[2]+'-'+partStart[1]+'-'+partStart[0])){
               if(!error){
@@ -91,7 +102,10 @@ class RoomDetails extends React.Component {
               console.log('error!');
               error = true;
             }
-        });
+
+
+        });*/
+        error = false;
         if(error){
           this.setState({
             error: true,
@@ -119,7 +133,7 @@ class RoomDetails extends React.Component {
 
   render() {
     const eventOptions = this.state.events.map(event => <option key={event.eventId} value={event.eventId}>{event.title}</option>);
-    const reservationList = this.state.reservations.map(reservation => <p key={reservation.reservationId}>{reservation.start} - {reservation.end} {reservation.events.title} {reservation.events.organiser}</p>);
+    const reservationList = this.state.reservations.map(reservation => <p key={reservation.reservationId}>{reservation.start} - {reservation.end} {reservation.event.title} {reservation.event.organiser}</p>);
 
     return (
       <div>
