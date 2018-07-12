@@ -16,8 +16,8 @@ class RoomDetails extends React.Component {
     this.state = {
       reservations: [],
       events: [],
-      startDate: null,
-      endDate: null,
+      startDate: moment(),
+      endDate: moment(),
       message: null,
       error: false,
       eventId: null,
@@ -43,13 +43,13 @@ class RoomDetails extends React.Component {
   }
 
   reserveRoom(){
-      console.log(this.state.startDate.format("yyyy.MM.dd HH:mm:ss"));
+      console.log(this.state.startDate.toISOString());
 
     if(!this.state.error){
       axios.put('http://localhost:8080/v1/ReservationServicesV1/reservation',
         {
-          startDate : this.state.startDate.format("yyyy.MM.dd HH:mm:ss"),
-          endDate : this.state.endDate.format("yyyy.MM.dd HH:mm:ss"),
+          start : this.state.startDate.format("YYYY.MM.DD hh:mm:ss"),
+          end : this.state.endDate.format("YYYY.MM.DD hh:mm:ss"),
           roomId: this.props.data.roomId,
           //TODO
           eventId: this.state.eventId,
@@ -71,11 +71,19 @@ class RoomDetails extends React.Component {
   checkValue(){
     let error = false;
     console.log(this.state.eventId);
+
+    console.log(this.state.startDate < this.state.endDate);
+
     if(this.state.startDate && this.state.endDate && this.state.eventId !== 'Please Select...'){
-      if(this.state.startDate < this.state.endDate && this.state.startDate.isAfter()){
-        this.state.reservations.map(reservation => {
+      if(this.state.startDate < this.state.endDate){
+        /*this.state.reservations.map(reservation => {
             var partStart = reservation.start.split('.');
             var partsEnd = reservation.end.split('.');
+
+            console.log("F1: "+this.state.endDate < reservation.start);
+            console.log("F2: " +this.state.startDate > reservation.end);
+
+
             console.log(this.state.startDate.isAfter(partsEnd[2]+'-'+partsEnd[1]+'-'+partsEnd[0]) +' '+ this.state.endDate.isBefore(partStart[2]+'-'+partStart[1]+'-'+partStart[0]));
             if(this.state.startDate.isAfter(partsEnd[2]+'-'+partsEnd[1]+'-'+partsEnd[0]) || this.state.endDate.isBefore(partStart[2]+'-'+partStart[1]+'-'+partStart[0])){
               if(!error){
@@ -88,7 +96,10 @@ class RoomDetails extends React.Component {
               console.log('error!');
               error = true;
             }
-        });
+
+
+        });*/
+        error = false;
         if(error){
           this.setState({
             error: true,
