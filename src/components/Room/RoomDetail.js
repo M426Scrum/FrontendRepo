@@ -66,6 +66,11 @@ class RoomDetails extends React.Component {
     });
   }
 
+  /*
+  /Checks if the two dates the user entered are overlapping with an other reservation
+  /If not error is set on false so the dates can be submited
+  */
+
   checkValue(){
     let error = false;
     console.log(this.state.eventId);

@@ -22,6 +22,8 @@ class RoomList extends React.Component{
         this.closeModal = this.closeModal.bind(this);
       }
 
+      //Requesting Rooms
+
       componentWillMount() {
         axios
           .get("http://localhost:8080/room")

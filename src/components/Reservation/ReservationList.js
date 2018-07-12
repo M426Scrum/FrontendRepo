@@ -13,6 +13,8 @@ class ReservationList extends React.Component {
     };
   }
 
+  //Requesting Reservations
+
   componentWillMount() {
     axios
       .get("http://localhost:8080/reservation")
