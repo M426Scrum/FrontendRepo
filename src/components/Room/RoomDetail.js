@@ -43,11 +43,13 @@ class RoomDetails extends React.Component {
   }
 
   reserveRoom(){
+      console.log(this.state.startDate.format("yyyy.MM.dd HH:mm:ss"));
+
     if(!this.state.error){
       axios.put('http://localhost:8080/v1/ReservationServicesV1/reservation',
         {
-          startDate : this.state.startDate.toDate(), 
-          endDate : this.state.endDate.toDate(),
+          startDate : this.state.startDate.format("yyyy.MM.dd HH:mm:ss"),
+          endDate : this.state.endDate.format("yyyy.MM.dd HH:mm:ss"),
           roomId: this.props.data.roomId,
           //TODO
           eventId: this.state.eventId,
