@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Representing a Column with a room inside
+
 class Room extends React.Component{
     constructor(props){
         super(props);

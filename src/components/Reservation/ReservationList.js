@@ -1,9 +1,9 @@
 import React from "react";
-import { Grid, Row, Navbar, Col, Table, Alert } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import axios from "axios";
 import { Reservation } from "./Reservation";
 
-var output;
+//A List of all the reservation
 
 class ReservationList extends React.Component {
   constructor(props) {

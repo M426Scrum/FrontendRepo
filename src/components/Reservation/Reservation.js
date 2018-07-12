@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Row, Navbar, Col, Table, Alert } from "react-bootstrap";
-import ReactTooltip from 'react-tooltip';
+
+//Table Column for a reservation
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class Reservation extends React.Component {
   }
 
   render() {
-    const startDate = new Date(this.state.data.start);
     return (
       <tbody>
         <tr>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import axios from 'axios';
-import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
@@ -9,6 +8,8 @@ import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import './RoomDetails.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Message } from "../Message/Message";
+
+//All the Details for a clicked room are shown inside of this component
 
 class RoomDetails extends React.Component {
   constructor(props) {

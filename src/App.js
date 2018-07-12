@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  Button,
-  ButtonToolbar,
-  Navbar,
-  Nav,
-  NavItem,
-  MenuItem,
-  NavDropdown
-} from "react-bootstrap";
 import { Header } from "./Header";
 import { Main } from "./Main";
 

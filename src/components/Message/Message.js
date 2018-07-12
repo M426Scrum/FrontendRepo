@@ -1,11 +1,10 @@
 import React from 'react';
 import './Message.css';
 
-class Message extends React.Component{
-    constructor(props){
-        super(props);
-    }
+//A message is shown
+//As parameter take 'error' or 'success' to change the apperance
 
+class Message extends React.Component{
     render(){
         let pre;
         if(this.props.type === 'error'){

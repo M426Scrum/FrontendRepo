@@ -1,11 +1,13 @@
 import React from 'react';
-import { Grid, Row, Navbar, Col, Table, Alert } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import axios from "axios";
 import { Room } from './Room';
 import Modal from 'react-modal';
 import { RoomDetails } from './RoomDetail';
 
 Modal.setAppElement('#root');
+
+//A Component where all rooms are listed
 
 class RoomList extends React.Component{
     constructor(props) {
